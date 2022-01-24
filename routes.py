@@ -57,8 +57,8 @@ async def ami_listener():
 
 # choose a time interval to run functions
 async def scheduler():
-    aioschedule.every(15).to(30).seconds.do(weather, greet='Прогноз погоды: ')
-    aioschedule.every(30).seconds.do(covid, greet='Коронавирус\nоперативные данные\n\n')
+    aioschedule.every(15).to(30).minutes.do(weather, greet='Прогноз погоды: ')
+    aioschedule.every(30).minutes.do(covid, greet='Коронавирус\nоперативные данные\n\n')
     while True:
         await aioschedule.run_pending()
         await asyncio.sleep(1)
