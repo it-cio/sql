@@ -35,3 +35,4 @@ async def drop_table(_):
     async with aiosqlite.connect('database.db') as db:
         await db.execute("DROP table IF EXISTS info")  # commit this so that the data in the database is saved
         print("SQL-Connection is closed")
+        
