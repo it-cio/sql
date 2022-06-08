@@ -1,9 +1,13 @@
+import logging
+
 import aiosqlite
+
+logging.basicConfig(level=logging.INFO)
 
 
 async def create_table(_):
     async with aiosqlite.connect('database.db') as db:
-        print("SQL-Connection is established")
+        logging.info("SQL-Connection is established")
         await db.execute("DROP table IF EXISTS info")  # commit this so that the data in the database is saved
         await db.execute("CREATE table IF NOT EXISTS info ("
                          "weather TEXT, weather_id INTEGER,"
@@ -34,5 +38,5 @@ async def update(name, request, message_id):
 async def drop_table(_):
     async with aiosqlite.connect('database.db') as db:
         await db.execute("DROP table IF EXISTS info")  # commit this so that the data in the database is saved
-        print("SQL-Connection is closed")
+        logging.info("SQL-Connection is closed")
         
